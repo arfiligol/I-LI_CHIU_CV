@@ -1,0 +1,20 @@
+---
+import PrintResume from "../../components/PrintResume.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { Lang } from "../../lib/resume";
+import { localized } from "../../lib/resume";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "en" }, props: { lang: "en" } },
+    { params: { lang: "zh" }, props: { lang: "zh" } },
+  ];
+}
+
+const { lang } = Astro.props as { lang: Lang };
+const content = localized(lang);
+---
+
+<BaseLayout title={`${content.meta.title} | Print`} description={content.meta.description} lang={lang} bodyClass="print-body">
+  <PrintResume lang={lang} />
+</BaseLayout>

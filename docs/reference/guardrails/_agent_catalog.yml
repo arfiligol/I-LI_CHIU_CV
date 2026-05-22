@@ -1,0 +1,13 @@
+guardrails:
+  - id: workspace
+    path: docs/reference/guardrails/workspace.md
+    description: Project-wide rules for the bilingual Astro and Typst CV site.
+    domains:
+      - project
+      - frontend
+      - resume-content
+      - pdf
+      - ci
+      - deployment
+    applies_when:
+      - "Any task in this repository"

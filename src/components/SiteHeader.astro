@@ -1,0 +1,40 @@
+---
+import { Download, Globe } from "@lucide/astro";
+import type { Lang } from "../lib/resume";
+import { localized, resumeData, withBase } from "../lib/resume";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = localized(lang);
+const primaryPdf = lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li-Chiu-CV-en.pdf";
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href={withBase(lang === "zh" ? "/zh/" : "/")} aria-label={resumeData.contact.name[lang]}>
+      <img class="brand-logo" src={withBase("/images/arfiligol-logo.png")} alt="Arfiligol" />
+      <span class="brand-text">{resumeData.contact.name[lang]}</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#profile">{content.nav.profile}</a>
+      <a href="#skills">{content.nav.skills}</a>
+      <a href="#projects">{content.nav.projects}</a>
+      <a href="#education">{content.nav.education}</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-button" href={withBase(content.nav.languageHref)} aria-label={content.nav.languageLabel}>
+        <Globe size={18} stroke-width={2} />
+        <span>{content.nav.languageLabel}</span>
+      </a>
+      <a class="button button--primary" href={withBase(primaryPdf)}>
+        <Download size={18} stroke-width={2} />
+        <span>{content.nav.download}</span>
+      </a>
+    </div>
+  </div>
+</header>

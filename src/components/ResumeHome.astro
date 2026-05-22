@@ -1,0 +1,130 @@
+---
+import { Download, ExternalLink, Mail } from "@lucide/astro";
+import type { Lang } from "../lib/resume";
+import { localized, resumeData, withBase } from "../lib/resume";
+import Hero from "./Hero.astro";
+import SiteHeader from "./SiteHeader.astro";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = localized(lang);
+---
+
+<div class="page-shell">
+  <SiteHeader lang={lang} />
+  <Hero lang={lang} />
+
+  <main>
+    <section class="content-band" id="profile">
+      <div class="section-heading">
+        <h2>{content.sections.summary}</h2>
+      </div>
+      <div class="summary-grid">
+        <div class="summary-copy">
+          {content.summary.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <aside class="contact-panel" aria-labelledby="contact-title">
+          <h2 id="contact-title" class="sr-only">{content.sections.contact}</h2>
+          <dl class="contact-list">
+            <div>
+              <dt>Email</dt>
+              <dd>
+                <a href={`mailto:${resumeData.contact.email}`}>
+                  <Mail size={16} stroke-width={2} aria-hidden="true" />
+                  {resumeData.contact.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>GitHub</dt>
+              <dd>
+                <a href={resumeData.contact.github.url} target="_blank" rel="noreferrer">
+                  <ExternalLink size={16} stroke-width={2} aria-hidden="true" />
+                  {resumeData.contact.github.label}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>{content.sections.downloads}</dt>
+              <dd>
+                <a href={withBase(lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li-Chiu-CV-en.pdf")}>
+                  <Download size={16} stroke-width={2} aria-hidden="true" />
+                  {content.nav.download}
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="content-band content-band--tight" id="skills">
+      <div class="section-heading">
+        <h2>{content.sections.skills}</h2>
+      </div>
+      <div class="skill-grid">
+        {content.skills.map((skill) => (
+          <article class="skill-card">
+            <h3>{skill.category}</h3>
+            <ul class="skill-bars">
+              {skill.items.map((item) => (
+                <li>
+                  <span>{item}</span>
+                  <i aria-hidden="true"></i>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="content-band content-band--tight" id="projects">
+      <div class="section-heading">
+        <h2>{content.sections.projects}</h2>
+      </div>
+      <div class="project-stack">
+        {content.projects.map((project, index) => (
+          <article class="project-card">
+            <div class="project-card__marker">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </div>
+            <div class="project-card__top">
+              <h3>{project.title}</h3>
+              <p class="project-card__meta">{project.meta}</p>
+            </div>
+            <ul>
+              {project.bullets.map((bullet) => (
+                <li><strong>{bullet.label}:</strong> {bullet.text}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="content-band content-band--tight" id="education">
+      <div class="section-heading">
+        <h2>{content.sections.education}</h2>
+      </div>
+      {content.education.map((item) => (
+        <article class="education-card">
+          <h3>{item.school}</h3>
+          <p>{item.degree} · {item.period}</p>
+          <ul>
+            {item.details.map((detail) => <li>{detail}</li>)}
+          </ul>
+        </article>
+      ))}
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>{resumeData.contact.name[lang]}</span>
+    <span> · </span>
+    <a href={resumeData.contact.github.url}>{resumeData.contact.github.url}</a>
+  </footer>
+</div>

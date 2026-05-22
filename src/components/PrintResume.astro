@@ -1,0 +1,74 @@
+---
+import type { Lang } from "../lib/resume";
+import { localized, resumeData } from "../lib/resume";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const content = localized(lang);
+---
+
+<main class="print-shell">
+  <article class="print-sheet">
+    <header class="print-header">
+      <div>
+        <h1>{resumeData.contact.name[lang]}</h1>
+        <p>{content.hero.role}</p>
+      </div>
+      <div class="print-contact">
+        <div>{resumeData.contact.email}</div>
+        <div>{resumeData.contact.github.url}</div>
+        <div>{resumeData.contact.location[lang]}</div>
+      </div>
+    </header>
+
+    <section class="print-section">
+      <h2>{content.sections.summary}</h2>
+      {content.summary.map((paragraph) => <p>{paragraph}</p>)}
+    </section>
+
+    <section class="print-section">
+      <h2>{content.sections.skills}</h2>
+      <div class="print-grid">
+        {content.skills.map((skill) => (
+          <div class="print-skill">
+            <h3>{skill.category}</h3>
+            <ul>
+              {skill.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="print-section">
+      <h2>{content.sections.projects}</h2>
+      {content.projects.map((project) => (
+        <article class="print-project">
+          <h3>{project.title}</h3>
+          <div class="print-project__meta">{project.meta}</div>
+          <ul>
+            {project.bullets.map((bullet) => (
+              <li><strong>{bullet.label}:</strong> {bullet.text}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section class="print-section">
+      <h2>{content.sections.education}</h2>
+      {content.education.map((item) => (
+        <article class="print-education">
+          <h3>{item.school}</h3>
+          <p>{item.degree} · {item.period}</p>
+          <ul>
+            {item.details.map((detail) => <li>{detail}</li>)}
+          </ul>
+        </article>
+      ))}
+    </section>
+  </article>
+</main>

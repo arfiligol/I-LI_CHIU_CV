@@ -1,0 +1,8 @@
+- Treat `src/data/resume.json` as the source of truth for resume content; do not hard-code resume facts in components or scripts unless they are structural labels.
+- Keep English as the primary language and Traditional Chinese as the secondary language.
+- Preserve GitHub Pages compatibility by keeping `site: "https://arfiligol.github.io"` and `base: "/I-LI_CHIU_CV"` unless the repository name changes.
+- Generate primary PDFs from Astro print routes with Playwright; keep Typst as the secondary PDF path.
+- Keep generated PDFs in `dist/files/` during build/deploy and do not commit PDF binaries unless explicitly requested.
+- Use `pnpm check`, `pnpm build`, `pnpm pdf`, and `pnpm pdf:typst` as the minimum verification gates before deployment.
+- Use the public GitHub profile `https://github.com/arfiligol`; keep the email placeholder until a real public email is provided.
+- Avoid unrelated refactors and keep design, data, PDF, and deployment changes scoped to the CV site.

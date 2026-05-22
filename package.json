@@ -1,0 +1,26 @@
+{
+  "name": "i-li_chiu_cv",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.31.0",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "check": "astro check",
+    "build": "astro build",
+    "pdf": "node scripts/generate-pdf.mjs",
+    "pdf:typst": "node scripts/generate-typst.mjs",
+    "preview": "astro preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^6.3.1",
+    "@lucide/astro": "^1.16.0",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "playwright": "^1.57.0"
+  }
+}

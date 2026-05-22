@@ -1,0 +1,307 @@
+{
+  "contact": {
+    "name": {
+      "en": "Yi-Li Chiu",
+      "zh": "邱羿理"
+    },
+    "email": "your.email@example.com",
+    "github": {
+      "label": "arfiligol",
+      "url": "https://github.com/arfiligol"
+    },
+    "location": {
+      "en": "Taiwan",
+      "zh": "臺灣"
+    }
+  },
+  "languages": {
+    "en": {
+      "meta": {
+        "title": "Yi-Li Chiu | Superconducting Quantum Circuits CV",
+        "description": "Academic CV for Yi-Li Chiu, focused on superconducting quantum circuits, high-frequency electromagnetic simulation, automated scientific pipelines, and research infrastructure."
+      },
+      "nav": {
+        "profile": "Profile",
+        "skills": "Skills",
+        "projects": "Projects",
+        "education": "Education",
+        "languageLabel": "中文",
+        "languageHref": "/zh/",
+        "download": "Download PDF"
+      },
+      "hero": {
+        "headline": "Physics researcher building automated simulation pipelines for superconducting quantum circuits.",
+        "role": "Superconducting Quantum Circuits · FEM Simulation · Scientific Automation",
+        "summary": "B.S. candidate in Physics at National Central University, combining admittance-based qubit modeling, layout-to-FEM workflows, and research infrastructure for fast, reproducible iteration.",
+        "primaryCta": "Download English PDF",
+        "secondaryCta": "View Chinese CV",
+        "highlights": [
+          "XY-line external coupling",
+          "Layout-to-FEM automation",
+          "HPC and NAS operations"
+        ]
+      },
+      "sections": {
+        "summary": "Professional Summary",
+        "skills": "Technical Skills",
+        "projects": "Research & Projects",
+        "education": "Education",
+        "contact": "Contact",
+        "downloads": "Downloads"
+      },
+      "summary": [
+        "Physics B.S. candidate at National Central University focused on superconducting quantum circuits and high-frequency electromagnetic simulation.",
+        "Experienced in building automated scientific data pipelines that connect layout design, finite-element analysis (FEM), and large-scale parameter sweeps.",
+        "Hands-on with computational resource management, Linux/Docker infrastructure, and storage systems, with a focus on bringing engineering discipline into physics research workflows."
+      ],
+      "skills": [
+        {
+          "category": "Quantum Circuit Design & Simulation",
+          "items": [
+            "Finite element analysis (FEM)",
+            "High-frequency electromagnetic simulation with ANSYS HFSS and Palace",
+            "Quantum circuit modeling"
+          ]
+        },
+        {
+          "category": "Scientific Computing & Automation",
+          "items": [
+            "Python with NumPy, SciPy, and Matplotlib",
+            "Automated simulation workflow development",
+            "Multi-dimensional parameter sweep and analysis"
+          ]
+        },
+        {
+          "category": "Architecture & Infrastructure",
+          "items": [
+            "Linux server maintenance",
+            "Docker containerized deployment",
+            "Synology NAS, TrueNAS, and HPC cluster resource usage"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "title": "Undergraduate Thesis: XY-Line External Coupling Effects on Floating Qubit Energy Relaxation",
+          "meta": "National Central University",
+          "bullets": [
+            {
+              "label": "Theoretical Framework",
+              "text": "Applied an admittance-based formulation to model floating qubits and define internal and external coupling paths, providing a clear physical basis for energy-relaxation analysis."
+            },
+            {
+              "label": "Theory-Simulation Cross-Validation",
+              "text": "Cross-validated quasi-static extraction and full-wave finite element analysis to verify model consistency under different assumptions and reduce systematic numerical error."
+            }
+          ]
+        },
+        {
+          "title": "Automated Simulation Pipeline Development",
+          "meta": "Layout, FEM, and circuit-parameter workflow",
+          "bullets": [
+            {
+              "label": "Layout-FEM Workflow Automation",
+              "text": "Developed an automated workflow from GDSII layout to FEM simulation and connected it to parametric design tooling for faster iteration."
+            },
+            {
+              "label": "Circuit Parameter Sweep & Analysis",
+              "text": "Built a mapping from lumped circuit models to Hamiltonian systems centered on Coupling Strength and ZZ Interaction Strength Space, enabling multi-dimensional scans that identify and calibrate critical circuit parameters."
+            }
+          ]
+        },
+        {
+          "title": "HPC & Resource Optimization",
+          "meta": "Large-scale simulation operations",
+          "bullets": [
+            {
+              "label": "Large-Scale Compute Allocation",
+              "text": "Used National Center for High-performance Computing (NCHC) cluster resources to run large-scale parallel computation for complex layout FEM models."
+            },
+            {
+              "label": "Mesh Refinement Optimization",
+              "text": "Systematically tuned mesh refinement parameters to balance runtime and numerical accuracy for reliable high-frequency electromagnetic simulation."
+            }
+          ]
+        },
+        {
+          "title": "Technical Infrastructure",
+          "meta": "Research data and compute environment",
+          "bullets": [
+            {
+              "label": "Laboratory Data Environment",
+              "text": "Helped maintain a lab-scale Synology NAS storage system, improving backup strategy, team collaboration, and research-file access reliability."
+            },
+            {
+              "label": "Personal Research Infrastructure",
+              "text": "Built and maintained a customized TrueNAS system integrated with Docker to support research-data management, automated backups, and flexible compute-environment scheduling."
+            }
+          ]
+        }
+      ],
+      "education": [
+        {
+          "school": "National Central University",
+          "degree": "B.S. in Physics",
+          "period": "Expected 2026",
+          "details": [
+            "Thesis: Study of XY-Line External Coupling Effects on Floating Qubit Energy Relaxation"
+          ]
+        }
+      ],
+      "downloads": [
+        {
+          "label": "English PDF",
+          "href": "/files/Yi-Li-Chiu-CV-en.pdf"
+        },
+        {
+          "label": "Chinese PDF",
+          "href": "/files/Yi-Li-Chiu-CV-zh.pdf"
+        }
+      ]
+    },
+    "zh": {
+      "meta": {
+        "title": "邱羿理 | 超導量子電路履歷",
+        "description": "邱羿理的學術履歷，聚焦超導量子電路、高頻電磁模擬、自動化科學管線與研究基礎設施。"
+      },
+      "nav": {
+        "profile": "簡介",
+        "skills": "技能",
+        "projects": "經歷",
+        "education": "教育",
+        "languageLabel": "English",
+        "languageHref": "/",
+        "download": "下載 PDF"
+      },
+      "hero": {
+        "headline": "以自動化模擬管線推進超導量子電路研究的物理研究者。",
+        "role": "超導量子電路 · FEM 模擬 · 科學自動化",
+        "summary": "國立中央大學物理系學士候選人，結合 admittance-based 量子位元建模、Layout-to-FEM 工作流與研究基礎設施，讓物理研究流程更快速、可重現且易於迭代。",
+        "primaryCta": "下載中文 PDF",
+        "secondaryCta": "查看英文履歷",
+        "highlights": [
+          "XY-Line 外耦合",
+          "Layout-to-FEM 自動化",
+          "HPC 與 NAS 維運"
+        ]
+      },
+      "sections": {
+        "summary": "個人簡介",
+        "skills": "核心技能",
+        "projects": "研究與專案經歷",
+        "education": "教育背景",
+        "contact": "聯絡資訊",
+        "downloads": "下載"
+      },
+      "summary": [
+        "國立中央大學物理系學士候選人，專注於超導量子電路與高頻電磁模擬。",
+        "擅長建立科學研究的自動化管線，整合 Layout 設計、有限元素分析（FEM）及大規模參數掃描。",
+        "具備高效率計算資源管理與系統建構實務經驗，致力於將工程思維導入物理研究流程。"
+      ],
+      "skills": [
+        {
+          "category": "量子電路設計與模擬",
+          "items": [
+            "有限元素分析（FEM）",
+            "高頻電磁模擬（ANSYS HFSS, Palace）",
+            "量子電路建模"
+          ]
+        },
+        {
+          "category": "科學計算與自動化",
+          "items": [
+            "Python（NumPy, SciPy, Matplotlib）",
+            "自動化模擬流程開發",
+            "多維參數空間掃描與分析"
+          ]
+        },
+        {
+          "category": "架構與基礎設施",
+          "items": [
+            "Linux 伺服器維護",
+            "Docker 容器化部署",
+            "Synology NAS、TrueNAS 與 HPC 叢集資源應用"
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "title": "學士論文：XY-Line 外耦合對浮動量子位元之能量弛豫研究",
+          "meta": "國立中央大學",
+          "bullets": [
+            {
+              "label": "理論架構建構",
+              "text": "應用 admittance-based formulation 建立浮動量子位元模型，並定義內部與外部耦合路徑，為系統能量弛豫提供明確的物理分析基礎。"
+            },
+            {
+              "label": "理論與模擬跨驗證",
+              "text": "透過交叉驗證準靜態萃取（Quasi-static extraction）與全波有限元素分析（Full-wave FEM），確保量子位元在不同模型假設下的一致性，有效降低數值模擬之系統性誤差。"
+            }
+          ]
+        },
+        {
+          "title": "自動化模擬管線開發",
+          "meta": "Layout、FEM 與電路參數工作流",
+          "bullets": [
+            {
+              "label": "Layout-FEM 流程自動化",
+              "text": "開發從 GDSII 佈局到 FEM 模擬的自動化工作流，並成功串接參數化設計工具，實現模擬流程的快速迭代。"
+            },
+            {
+              "label": "自動化電路參數掃描與分析",
+              "text": "以 Coupling Strength 與 ZZ Interaction Strength Space 為核心，建立從集總元件電路模型至 Hamiltonian 系統的映射機制；透過多維參數空間掃描，快速鎖定關鍵電路參數並進行精準校準。"
+            }
+          ]
+        },
+        {
+          "title": "高效能計算與資源優化",
+          "meta": "大規模模擬運算",
+          "bullets": [
+            {
+              "label": "大規模運算配置",
+              "text": "運用國家高速網路與計算中心（NCHC）叢集資源，針對複雜 Layout FEM 模型進行大規模並行計算。"
+            },
+            {
+              "label": "網格劃分優化",
+              "text": "系統性優化網格劃分（Mesh Refinement）參數，在運算時間與數值精度間取得平衡，確保高階電磁模擬之可靠性。"
+            }
+          ]
+        },
+        {
+          "title": "技術基礎設施建構",
+          "meta": "研究資料與運算環境",
+          "bullets": [
+            {
+              "label": "實驗室數據環境協作",
+              "text": "協助維護實驗室級 Synology NAS 儲存系統，優化數據備份策略與團隊協作環境，確保研究檔案之存取效率與安全性。"
+            },
+            {
+              "label": "個人科研基礎建設",
+              "text": "建構並維護高度客製化之 TrueNAS 儲存系統，整合 Docker 容器化技術，實現個人科研數據之高效管理、自動化備份與靈活的運算環境調度。"
+            }
+          ]
+        }
+      ],
+      "education": [
+        {
+          "school": "國立中央大學（National Central University）",
+          "degree": "物理學學士",
+          "period": "預計 2026 年畢業",
+          "details": [
+            "論文題目：Study of XY-Line External Coupling Effects on Floating Qubit Energy Relaxation"
+          ]
+        }
+      ],
+      "downloads": [
+        {
+          "label": "英文 PDF",
+          "href": "/files/Yi-Li-Chiu-CV-en.pdf"
+        },
+        {
+          "label": "中文 PDF",
+          "href": "/files/Yi-Li-Chiu-CV-zh.pdf"
+        }
+      ]
+    }
+  }
+}

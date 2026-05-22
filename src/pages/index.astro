@@ -1,0 +1,12 @@
+---
+import ResumeHome from "../components/ResumeHome.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { localized } from "../lib/resume";
+
+const lang = "en";
+const content = localized(lang);
+---
+
+<BaseLayout title={content.meta.title} description={content.meta.description} lang={lang}>
+  <ResumeHome lang={lang} />
+</BaseLayout>
