@@ -47,7 +47,7 @@
         "I care about quiet, reliable systems. A good script, storage setup, simulation report, or note should make the next question easier for future me and for the people working with me."
       ],
       "summary": [
-        "Physics B.S. candidate at National Central University working on superconducting quantum circuits through circuit modeling, electromagnetic simulation, and reproducible research workflows.",
+        "Physics undergraduate at National Central University, expected to graduate in 2026 and planning to continue into graduate study in the same physics department.",
         "Connects theoretical assumptions, layout-level design, solver outputs, and compute infrastructure into reviewable loops that can be tested, refined, and reused.",
         "Uses human-led, AI-assisted development to explore options faster while keeping decisions grounded in physics reasoning, simulation evidence, and explicit verification."
       ],
@@ -67,7 +67,7 @@
             },
             {
               "label": "Cross-checked assumptions",
-              "text": "Compared quasi-static extraction with full-wave finite-element simulation to identify where model assumptions stayed consistent and where numerical error could enter."
+              "text": "Compared quasi-static extraction with full-wave finite-element simulation to identify where model assumptions stayed consistent and where numerical differences could arise."
             }
           ]
         },
@@ -186,7 +186,7 @@
         "我在意安靜而可靠的系統。好的腳本、儲存環境、模擬報告或研究筆記，應該讓未來的自己與合作的人更容易提出下一個問題。"
       ],
       "summary": [
-        "國立中央大學物理系學士候選人，透過電路建模、電磁模擬與可重現研究流程投入超導量子電路研究。",
+        "國立中央大學物理系學士班學生，預計 2026 年畢業，並預計續讀同校物理系研究所。",
         "能將理論假設、layout 設計、solver 輸出與運算基礎設施串成可檢查、可修正、可重用的研究迴圈。",
         "採用 human-led, AI-assisted 的開發方式加速探索與實作，同時讓決策回到物理推理、模擬證據與明確驗證。"
       ],
@@ -206,7 +206,7 @@
             },
             {
               "label": "交叉檢查假設",
-              "text": "比較準靜態萃取與全波有限元素模擬，確認模型假設在不同方法下的一致性，並辨識可能造成數值誤差的位置。"
+              "text": "比較準靜態萃取與全波有限元素模擬，確認模型假設在不同方法下的一致性，並辨識可能造成數值差異的位置。"
             }
           ]
         },
