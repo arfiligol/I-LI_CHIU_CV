@@ -61,14 +61,12 @@ function render(lang, fontName) {
   const content = resume.languages[lang];
   const contact = resume.contact;
   const summary = content.summary.map(escapeTypst).join("\n\n");
-  const skills = content.skills
-    .map((skill) => [`*${escapeTypst(skill.category)}*`, list(skill.items)].join("\n"))
-    .join("\n\n");
   const projects = content.projects
     .map((project) =>
       [
         `#text(size: 9.8pt, weight: "bold")[${escapeTypst(project.title)}]`,
         `#text(size: 8.8pt, fill: muted)[${escapeTypst(project.meta)}]`,
+        `#text(size: 8pt, fill: accent)[${escapeTypst(project.tags.join(" / "))}]`,
         project.bullets.map((item) => bullet(item.label, item.text)).join("\n"),
       ].join("\n"),
     )
@@ -98,9 +96,6 @@ function render(lang, fontName) {
 
 ${section(content.sections.summary)}
 ${summary}
-
-${section(content.sections.skills)}
-${skills}
 
 ${section(content.sections.projects)}
 ${projects}

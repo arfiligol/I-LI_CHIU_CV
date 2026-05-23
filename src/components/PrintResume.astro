@@ -30,25 +30,14 @@ const content = localized(lang);
     </section>
 
     <section class="print-section">
-      <h2>{content.sections.skills}</h2>
-      <div class="print-grid">
-        {content.skills.map((skill) => (
-          <div class="print-skill">
-            <h3>{skill.category}</h3>
-            <ul>
-              {skill.items.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="print-section">
       <h2>{content.sections.projects}</h2>
       {content.projects.map((project) => (
         <article class="print-project">
           <h3>{project.title}</h3>
           <div class="print-project__meta">{project.meta}</div>
+          <div class="print-tags">
+            {project.tags.map((tag) => <span>{tag}</span>)}
+          </div>
           <ul>
             {project.bullets.map((bullet) => (
               <li><strong>{bullet.label}:</strong> {bullet.text}</li>

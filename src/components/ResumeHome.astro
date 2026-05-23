@@ -1,7 +1,6 @@
 ---
-import { Download, ExternalLink, Mail } from "@lucide/astro";
 import type { Lang } from "../lib/resume";
-import { localized, resumeData, withBase } from "../lib/resume";
+import { localized, resumeData } from "../lib/resume";
 import Hero from "./Hero.astro";
 import SiteHeader from "./SiteHeader.astro";
 
@@ -20,65 +19,16 @@ const content = localized(lang);
   <main>
     <section class="content-band" id="profile">
       <div class="section-heading">
-        <h2>{content.sections.summary}</h2>
+        <h2>{content.sections.about}</h2>
       </div>
-      <div class="summary-grid">
-        <div class="summary-copy">
-          {content.summary.map((paragraph) => <p>{paragraph}</p>)}
+      <div class="profile-grid">
+        <div class="about-copy">
+          {content.about.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-        <aside class="contact-panel" aria-labelledby="contact-title">
-          <h2 id="contact-title" class="sr-only">{content.sections.contact}</h2>
-          <dl class="contact-list">
-            <div>
-              <dt>Email</dt>
-              <dd>
-                <a href={`mailto:${resumeData.contact.email}`}>
-                  <Mail size={16} stroke-width={2} aria-hidden="true" />
-                  {resumeData.contact.email}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt>GitHub</dt>
-              <dd>
-                <a href={resumeData.contact.github.url} target="_blank" rel="noreferrer">
-                  <ExternalLink size={16} stroke-width={2} aria-hidden="true" />
-                  {resumeData.contact.github.label}
-                </a>
-              </dd>
-            </div>
-            <div>
-              <dt>{content.sections.downloads}</dt>
-              <dd>
-                <a href={withBase(lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li-Chiu-CV-en.pdf")}>
-                  <Download size={16} stroke-width={2} aria-hidden="true" />
-                  {content.nav.download}
-                </a>
-              </dd>
-            </div>
-          </dl>
+        <aside class="summary-panel" aria-labelledby="summary-title">
+          <h3 id="summary-title">{content.sections.summary}</h3>
+          {content.summary.map((paragraph) => <p>{paragraph}</p>)}
         </aside>
-      </div>
-    </section>
-
-    <section class="content-band content-band--tight" id="skills">
-      <div class="section-heading">
-        <h2>{content.sections.skills}</h2>
-      </div>
-      <div class="skill-grid">
-        {content.skills.map((skill) => (
-          <article class="skill-card">
-            <h3>{skill.category}</h3>
-            <ul class="skill-bars">
-              {skill.items.map((item) => (
-                <li>
-                  <span>{item}</span>
-                  <i aria-hidden="true"></i>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
       </div>
     </section>
 
@@ -87,14 +37,16 @@ const content = localized(lang);
         <h2>{content.sections.projects}</h2>
       </div>
       <div class="project-stack">
-        {content.projects.map((project, index) => (
+        {content.projects.map((project) => (
           <article class="project-card">
-            <div class="project-card__marker">
-              <span>{String(index + 1).padStart(2, "0")}</span>
-            </div>
             <div class="project-card__top">
-              <h3>{project.title}</h3>
-              <p class="project-card__meta">{project.meta}</p>
+              <div>
+                <h3>{project.title}</h3>
+                <p class="project-card__meta">{project.meta}</p>
+              </div>
+              <ul class="project-tags" aria-label="Project themes">
+                {project.tags.map((tag) => <li>{tag}</li>)}
+              </ul>
             </div>
             <ul>
               {project.bullets.map((bullet) => (

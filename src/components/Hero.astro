@@ -1,5 +1,5 @@
 ---
-import { Download, ExternalLink, Languages, Mail } from "@lucide/astro";
+import { ExternalLink, Mail } from "@lucide/astro";
 import type { Lang } from "../lib/resume";
 import { localized, resumeData, withBase } from "../lib/resume";
 
@@ -9,8 +9,6 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = localized(lang);
-const primaryPdf = lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li-Chiu-CV-en.pdf";
-const alternateHref = lang === "zh" ? "/" : "/zh/";
 const introLabel = lang === "zh" ? "你好，我是" : "HELLO, MY NAME IS";
 ---
 
@@ -32,19 +30,6 @@ const introLabel = lang === "zh" ? "你好，我是" : "HELLO, MY NAME IS";
           <span>{resumeData.contact.github.label}</span>
         </a>
       </div>
-      <div class="hero__actions">
-        <a class="button button--primary" href={withBase(primaryPdf)}>
-          <Download size={18} stroke-width={2} />
-          <span>{content.hero.primaryCta}</span>
-        </a>
-        <a class="button" href={withBase(alternateHref)}>
-          <Languages size={18} stroke-width={2} />
-          <span>{content.hero.secondaryCta}</span>
-        </a>
-      </div>
-      <ul class="hero__highlights">
-        {content.hero.highlights.map((highlight) => <li>{highlight}</li>)}
-      </ul>
     </div>
     <div class="hero__portrait-wrap" aria-hidden="true">
       <img class="hero__portrait" src={withBase("/images/profile-yili.jpg")} alt="" />
