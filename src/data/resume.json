@@ -17,7 +17,7 @@
   "languages": {
     "en": {
       "meta": {
-        "title": "I-LI CHIU | Superconducting Quantum RF Researcher",
+        "title": "I-LI CHIU | Superconducting Quantum RF Student",
         "description": "Academic CV for I-LI CHIU, focused on superconducting quantum circuits, RF simulation, human-led AI-assisted research workflows, and scientific infrastructure."
       },
       "nav": {
@@ -29,8 +29,8 @@
         "download": "Download PDF"
       },
       "hero": {
-        "headline": "Physics researcher turning uncertain questions into verifiable research systems.",
-        "role": "Superconducting Quantum RF Researcher",
+        "headline": "Physics student turning uncertain questions into verifiable research systems.",
+        "role": "Superconducting Quantum RF Student",
         "summary": "I build research workflows where physical intuition, simulation evidence, and careful automation can meet. My current focus is superconducting quantum circuits, RF modeling, and the practical systems that make research easier to inspect and repeat."
       },
       "sections": {
@@ -156,7 +156,7 @@
     },
     "zh": {
       "meta": {
-        "title": "邱羿理 | 超導量子 RF 研究者",
+        "title": "邱羿理 | 超導量子 RF 學生",
         "description": "邱羿理的學術履歷，聚焦超導量子電路、RF 模擬、human-led AI-assisted 研究流程與科學基礎設施。"
       },
       "nav": {
@@ -168,8 +168,8 @@
         "download": "下載 PDF"
       },
       "hero": {
-        "headline": "把模糊的物理問題整理成可驗證研究系統的研究者。",
-        "role": "Superconducting Quantum RF Researcher",
+        "headline": "把模糊的物理問題整理成可驗證研究系統的學生。",
+        "role": "Superconducting Quantum RF Student",
         "summary": "我關注物理直覺、模擬證據與自動化流程如何互相校準。目前主要投入超導量子電路、RF 建模，以及讓研究過程更容易檢查、重現與迭代的實務系統。"
       },
       "sections": {
