@@ -9,6 +9,13 @@
       "label": "arfiligol",
       "url": "https://github.com/arfiligol"
     },
+    "researchPath": {
+      "label": {
+        "en": "Research Path",
+        "zh": "我的路線"
+      },
+      "url": "https://arfiligol.github.io/"
+    },
     "location": {
       "en": "Taiwan",
       "zh": "臺灣"
@@ -18,7 +25,7 @@
     "en": {
       "meta": {
         "title": "I-LI CHIU | Superconducting Quantum RF Student",
-        "description": "Academic CV for I-LI CHIU, focused on superconducting quantum circuits, RF simulation, human-led AI-assisted research workflows, and scientific infrastructure."
+        "description": "Academic CV for I-LI CHIU, focused on superconducting quantum circuits, RF simulation, physics-centered data practice, and human-led AI-assisted research workflows."
       },
       "nav": {
         "profile": "About",
@@ -31,7 +38,7 @@
       "hero": {
         "headline": "Physics student turning uncertain questions into verifiable research systems.",
         "role": "Superconducting Quantum RF Student",
-        "summary": "I build research workflows where physical intuition, simulation evidence, and careful automation can meet. My current focus is superconducting quantum circuits, RF modeling, and the practical systems that make research easier to inspect and repeat."
+        "summary": "I am building a physics-centered data practice: learning superconducting quantum systems while developing the tools to generate, manage, analyze, and verify research data."
       },
       "sections": {
         "about": "About Me",
@@ -43,13 +50,14 @@
       },
       "about": [
         "I am drawn to problems that begin as a rough physical question rather than a clean assignment. My habit is to slow the problem down, name the assumptions, and build a small loop that can be checked by code, simulation, or data.",
+        "The road I am building is not about becoming someone who only knows how to use tools. I want tools to become leverage for understanding physical questions; data generation, management, and analysis are ways to make research inspectable, reproducible, and extensible.",
         "AI is part of that loop, but not a replacement for judgment. I use it to widen the search space, draft competing implementations, find blind spots, and accelerate documentation; the final answer still has to survive derivations, numerical checks, and direct inspection.",
         "I care about quiet, reliable systems. A good script, storage setup, simulation report, or note should make the next question easier for future me and for the people working with me."
       ],
       "summary": [
-        "Physics undergraduate at National Central University, expected to graduate in 2026 and planning to continue into graduate study in the same physics department.",
+        "Physics undergraduate at National Central University, expected to graduate in 2026 and planning to continue graduate study in physics, focused on superconducting quantum circuits and research data workflows.",
         "Connects theoretical assumptions, layout-level design, solver outputs, and compute infrastructure into reviewable loops that can be tested, refined, and reused.",
-        "Uses human-led, AI-assisted development to explore options faster while keeping decisions grounded in physics reasoning, simulation evidence, and explicit verification."
+        "Develops practical systems for data generation, management, analysis, and verification while using human-led, AI-assisted development to explore options faster without outsourcing judgment."
       ],
       "projects": [
         {
@@ -73,7 +81,7 @@
         },
         {
           "title": "Layout-to-FEM Research Workflow",
-          "meta": "Simulation automation and parameter exploration",
+          "meta": "Research data generation through simulation automation",
           "tags": [
             "AI-assisted tooling",
             "Simulation automation",
@@ -82,7 +90,7 @@
           "bullets": [
             {
               "label": "Built an iteration loop",
-              "text": "Developed a workflow from GDSII layout to FEM simulation, connected to parametric design tooling so layout changes could become solver-ready experiments more quickly."
+              "text": "Developed a data-generation workflow from GDSII layout to FEM simulation, connected to parametric design tooling so layout changes could become solver-ready experiments more quickly."
             },
             {
               "label": "Used AI as engineering leverage",
@@ -96,7 +104,7 @@
         },
         {
           "title": "Compute and Mesh-Refinement Operations",
-          "meta": "Large-scale electromagnetic simulation",
+          "meta": "Simulation data analysis and verification",
           "tags": [
             "HPC operations",
             "Mesh refinement",
@@ -105,17 +113,17 @@
           "bullets": [
             {
               "label": "Ran larger solver workloads",
-              "text": "Used National Center for High-performance Computing (NCHC) cluster resources to run parallel computation for complex layout FEM models."
+              "text": "Used National Center for High-performance Computing (NCHC) cluster resources to produce and inspect larger simulation datasets for complex layout FEM models."
             },
             {
               "label": "Balanced time and accuracy",
-              "text": "Tuned mesh-refinement parameters systematically so simulation runtime, resource usage, and numerical reliability could be discussed with concrete evidence."
+              "text": "Tuned mesh-refinement parameters systematically so runtime, resource usage, numerical differences, and reliability could be evaluated with concrete evidence."
             }
           ]
         },
         {
           "title": "Research Infrastructure and Data Environment",
-          "meta": "Storage, containers, and research operations",
+          "meta": "Research data management and compute operations",
           "tags": [
             "NAS operations",
             "Docker",
@@ -124,7 +132,7 @@
           "bullets": [
             {
               "label": "Supported lab data practices",
-              "text": "Helped maintain a lab-scale Synology NAS environment, improving backup habits, team access, and day-to-day research-file reliability."
+              "text": "Helped maintain a lab-scale Synology NAS environment, improving backup habits, team access, and day-to-day reliability for research data."
             },
             {
               "label": "Built personal research infrastructure",
@@ -157,7 +165,7 @@
     "zh": {
       "meta": {
         "title": "邱羿理 | 超導量子 RF 學生",
-        "description": "邱羿理的學術履歷，聚焦超導量子電路、RF 模擬、human-led AI-assisted 研究流程與科學基礎設施。"
+        "description": "邱羿理的學術履歷，聚焦超導量子電路、RF 模擬、以物理研究為核心的資料實作能力與 human-led AI-assisted 研究流程。"
       },
       "nav": {
         "profile": "關於",
@@ -170,7 +178,7 @@
       "hero": {
         "headline": "把模糊的物理問題整理成可驗證研究系統的學生。",
         "role": "Superconducting Quantum RF Student",
-        "summary": "我關注物理直覺、模擬證據與自動化流程如何互相校準。目前主要投入超導量子電路、RF 建模，以及讓研究過程更容易檢查、重現與迭代的實務系統。"
+        "summary": "我正在建立一套以物理研究為核心的資料實作能力：一邊深化超導量子系統的理解，一邊強化產生、管理、分析與驗證研究資料的工具能力。"
       },
       "sections": {
         "about": "關於我",
@@ -182,13 +190,14 @@
       },
       "about": [
         "我喜歡處理一開始還不乾淨、甚至有點模糊的問題。我的習慣是先把問題放慢，把假設、證據與不確定性分開，再做出一個可以被程式、模擬或資料檢查的小循環。",
+        "我現在走的路，不是把自己訓練成只會使用工具的人，而是把工具變成理解物理問題的槓桿。資料的產生、管理與分析，對我來說不是附屬技能，而是讓研究問題能被檢查、重現與延伸的方法。",
         "AI 是這個循環的一部分，但不是取代判斷的捷徑。我會用它擴大搜尋空間、草擬不同實作、找出盲點與加速文件整理；最後仍要回到推導、數值檢查與人工驗證。",
         "我在意安靜而可靠的系統。好的腳本、儲存環境、模擬報告或研究筆記，應該讓未來的自己與合作的人更容易提出下一個問題。"
       ],
       "summary": [
-        "國立中央大學物理系學士班學生，預計 2026 年畢業，並預計續讀同校物理系研究所。",
+        "國立中央大學物理系學士班學生，預計 2026 年畢業，並預計續讀物理系研究所；目前聚焦超導量子電路與研究資料工作流。",
         "能將理論假設、layout 設計、solver 輸出與運算基礎設施串成可檢查、可修正、可重用的研究迴圈。",
-        "採用 human-led, AI-assisted 的開發方式加速探索與實作，同時讓決策回到物理推理、模擬證據與明確驗證。"
+        "建立資料產生、管理、分析與驗證的實務系統，並以 human-led, AI-assisted 的方式加速探索與實作，但不把判斷外包給工具。"
       ],
       "projects": [
         {
@@ -212,7 +221,7 @@
         },
         {
           "title": "Layout-to-FEM 研究工作流",
-          "meta": "模擬自動化與參數探索",
+          "meta": "透過模擬自動化產生研究資料",
           "tags": [
             "AI-assisted tooling",
             "模擬自動化",
@@ -221,7 +230,7 @@
           "bullets": [
             {
               "label": "建立迭代循環",
-              "text": "開發從 GDSII layout 到 FEM 模擬的工作流，並串接參數化設計工具，讓 layout 變更能更快形成可進 solver 的實驗。"
+              "text": "開發從 GDSII layout 到 FEM 模擬的資料產生工作流，並串接參數化設計工具，讓 layout 變更能更快形成可進 solver 的實驗。"
             },
             {
               "label": "把 AI 作為工程槓桿",
@@ -235,7 +244,7 @@
         },
         {
           "title": "運算與 Mesh Refinement 實務",
-          "meta": "大規模電磁模擬",
+          "meta": "模擬資料分析與驗證",
           "tags": [
             "HPC operations",
             "Mesh refinement",
@@ -244,17 +253,17 @@
           "bullets": [
             {
               "label": "執行較大規模 solver 任務",
-              "text": "運用國家高速網路與計算中心（NCHC）叢集資源，針對複雜 layout FEM 模型進行平行運算。"
+              "text": "運用國家高速網路與計算中心（NCHC）叢集資源，針對複雜 layout FEM 模型產生並檢查較大規模的模擬資料。"
             },
             {
               "label": "平衡時間與精度",
-              "text": "系統性調整 mesh-refinement 參數，讓模擬時間、資源使用與數值可靠性可以用具體證據討論。"
+              "text": "系統性調整 mesh-refinement 參數，讓模擬時間、資源使用、數值差異與可靠性可以用具體證據評估。"
             }
           ]
         },
         {
           "title": "研究基礎設施與資料環境",
-          "meta": "儲存、容器與研究維運",
+          "meta": "研究資料管理與運算維運",
           "tags": [
             "NAS operations",
             "Docker",
@@ -263,7 +272,7 @@
           "bullets": [
             {
               "label": "協助實驗室資料環境",
-              "text": "協助維護實驗室級 Synology NAS 環境，改善備份習慣、團隊存取與日常研究檔案可靠性。"
+              "text": "協助維護實驗室級 Synology NAS 環境，改善備份習慣、團隊存取與日常研究資料可靠性。"
             },
             {
               "label": "建構個人研究基礎設施",

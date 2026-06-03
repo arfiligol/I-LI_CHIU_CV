@@ -78,5 +78,9 @@ const content = localized(lang);
     <span>{resumeData.contact.name[lang]}</span>
     <span> · </span>
     <a href={resumeData.contact.github.url}>{resumeData.contact.github.url}</a>
+    <span> · </span>
+    <a href={resumeData.contact.researchPath.url} target="_blank" rel="noreferrer">
+      {resumeData.contact.researchPath.label[lang]}
+    </a>
   </footer>
 </div>
