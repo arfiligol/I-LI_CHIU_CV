@@ -1,6 +1,6 @@
 - Treat `src/data/resume.json` as the source of truth for resume content; do not hard-code resume facts in components or scripts unless they are structural labels.
 - Keep English as the primary language and Traditional Chinese as the secondary language.
-- Preserve GitHub Pages compatibility by keeping `site: "https://arfiligol.github.io"` and `base: "/I-LI_CHIU_CV"` unless the repository name changes.
+- Preserve the default GitHub Pages target (`https://arfiligol.github.io`, base `/I-LI_CHIU_CV`). Container builds set `SITE_URL=https://arfiligol.tw` and `BASE_PATH=/`; use the same build-time values for Astro and PDF generation.
 - Generate primary PDFs from Astro print routes with Playwright; keep Typst as the secondary PDF path.
 - Keep generated PDFs in `dist/files/` during build/deploy and do not commit PDF binaries unless explicitly requested.
 - Use `pnpm check`, `pnpm build`, `pnpm pdf`, and `pnpm pdf:typst` as the minimum verification gates before deployment.

@@ -1,0 +1,7 @@
+# Operator-owned image selection; see docs/deployment.md for first deployment.
+services:
+  cv:
+    image: "${CV_IMAGE:?Set CV_IMAGE to the published GHCR image digest}"
+    restart: unless-stopped
+    ports:
+      - "${CV_BIND_ADDRESS:-127.0.0.1}:${CV_PORT:-8088}:80"
