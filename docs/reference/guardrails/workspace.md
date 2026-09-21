@@ -60,9 +60,14 @@ Build and maintain a bilingual academic CV website for Yi-Li Chiu that can be de
 - Run `pnpm check`, `pnpm build`, `pnpm pdf`, and `pnpm pdf:typst`.
 - Upload `dist/` to GitHub Pages only after all gates pass.
 - Container CI validates both URL targets and publishes the verified root-site output to GHCR only on `main`; see [deployment instructions](../../deployment.md). Publication is not production deployment.
+- Pushes to `develop` run validation only. GitHub Pages jobs explicitly require `main`, including manual dispatch. Promotion PRs run validation without publication.
 
 ## Agent Rules
 
+- Make routine coherent changes in this CV child repository on `develop`, commit scoped changes and push immediately; do not require a topic PR for every small edit. Use a `develop` → `main` Promotion PR for an authorized public release. Never treat a develop push as release authorization.
+- Keep the `Personal-Presentations` parent main-only and preserve its gitlink and unrelated Human WIP. Use a clean develop worktree rather than switching or resetting a dirty checkout.
+- Use the existing loopback-only `pnpm dev` for live-edit preview; `pnpm preview` serves already-built output and PDF generation is separate. Do not expose a hosted/LAN preview without a separate request. See `docs/deployment.md` for target-specific commands.
+- Production Compose uses external `npm_net`, alias `i-li-chiu-cv`, container port 80 and no host ports. Portainer/NPM and alias-collision verification belong to the deployment owner; DNS is Human-managed. GitOps digest promotion is not yet implemented.
 - Treat `src/data/resume.json` as the source of truth for resume content; do not hard-code resume facts in components or scripts unless they are structural labels.
 - Keep English as the primary language and Traditional Chinese as the secondary language.
 - Preserve the default GitHub Pages target (`https://arfiligol.github.io`, base `/I-LI_CHIU_CV`). Container builds set `SITE_URL=https://arfiligol.tw` and `BASE_PATH=/`; use the same build-time values for Astro and PDF generation.

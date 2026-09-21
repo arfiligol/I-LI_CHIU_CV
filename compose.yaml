@@ -3,5 +3,12 @@ services:
   cv:
     image: "${CV_IMAGE:?Set CV_IMAGE to the published GHCR image digest}"
     restart: unless-stopped
-    ports:
-      - "${CV_BIND_ADDRESS:-127.0.0.1}:${CV_PORT:-8088}:80"
+    networks:
+      npm_net:
+        aliases:
+          - i-li-chiu-cv
+
+networks:
+  npm_net:
+    external: true
+    name: npm_net

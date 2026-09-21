@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main]
+    branches: [main, develop]
   workflow_dispatch:
 
 permissions:
@@ -67,8 +67,19 @@ jobs:
         run: |
           docker build --tag cv-ci:check .
           CV_IMAGE=cv-ci:check docker compose config --quiet
-          CV_IMAGE=cv-ci:check docker compose up --detach --wait --wait-timeout 60
-          trap 'CV_IMAGE=cv-ci:check docker compose down' EXIT
+          # Production Compose has no host ports and uses the operator's npm_net.
+          # Only this disposable CI container exposes a runner-loopback port.
+          docker run --detach --name cv-ci-check \
+            --publish 127.0.0.1:8088:80 --health-interval 1s \
+            --health-start-period 0s cv-ci:check
+          trap 'docker logs cv-ci-check; docker rm --force cv-ci-check' EXIT
+          for attempt in {1..30}; do
+            health=$(docker inspect --format '{{.State.Health.Status}}' cv-ci-check)
+            if [ "$health" = healthy ]; then break; fi
+            if [ "$health" = unhealthy ]; then exit 1; fi
+            sleep 1
+          done
+          [ "$health" = healthy ]
           for route in / /zh/ /print/en/ /print/zh/ \
             /files/Yi-Li-Chiu-CV-en.pdf /files/Yi-Li-Chiu-CV-zh.pdf \
             /files/Yi-Li-Chiu-CV-typst-en.pdf /files/Yi-Li-Chiu-CV-typst-zh.pdf; do
