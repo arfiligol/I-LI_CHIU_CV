@@ -1,0 +1,14 @@
+# Operator-owned image selection; see docs/deployment.md for first deployment.
+services:
+  cv:
+    image: "ghcr.io/arfiligol/i-li-chiu-cv@sha256:0221408ae49a5349521f5fa521c72f4eb5bcd04aaa039e090a140c916811a81d"
+    restart: unless-stopped
+    networks:
+      npm_net:
+        aliases:
+          - i-li-chiu-cv
+
+networks:
+  npm_net:
+    external: true
+    name: npm_net
