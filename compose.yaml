@@ -1,0 +1,14 @@
+# Operator-owned image selection; see docs/deployment.md for first deployment.
+services:
+  cv:
+    image: "${CV_IMAGE:?Set CV_IMAGE to the published GHCR image digest}"
+    restart: unless-stopped
+    networks:
+      npm_net:
+        aliases:
+          - i-li-chiu-cv
+
+networks:
+  npm_net:
+    external: true
+    name: npm_net

@@ -1,0 +1,153 @@
+name: Build CV container
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Serialize publication for a ref. An in-flight main publication is not cancelled.
+concurrency:
+  group: cv-container-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: github-pages
+            site: https://arfiligol.github.io
+            base: /I-LI_CHIU_CV
+          - target: container
+            site: https://arfiligol.tw
+            base: /
+    env:
+      SITE_URL: ${{ matrix.site }}
+      BASE_PATH: ${{ matrix.base }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.31.0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+      - uses: typst-community/setup-typst@v5
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Check
+        run: pnpm check
+      - name: Build website
+        run: pnpm build
+      - name: Generate Astro PDFs
+        run: pnpm pdf
+      - name: Generate Typst PDFs
+        run: pnpm pdf:typst
+
+      - name: Build and open the container (amd64)
+        if: matrix.target == 'container'
+        run: |
+          docker build --tag cv-ci:check .
+          CV_IMAGE=cv-ci:check docker compose config --quiet
+          # Production Compose has no host ports and uses the operator's npm_net.
+          # Only this disposable CI container exposes a runner-loopback port.
+          docker run --detach --name cv-ci-check \
+            --publish 127.0.0.1:8088:80 --health-interval 1s \
+            --health-start-period 0s cv-ci:check
+          trap 'docker logs cv-ci-check; docker rm --force cv-ci-check' EXIT
+          for attempt in {1..30}; do
+            health=$(docker inspect --format '{{.State.Health.Status}}' cv-ci-check)
+            if [ "$health" = healthy ]; then break; fi
+            if [ "$health" = unhealthy ]; then exit 1; fi
+            sleep 1
+          done
+          [ "$health" = healthy ]
+          for route in / /zh/ /print/en/ /print/zh/ \
+            /files/Yi-Li-Chiu-CV-en.pdf /files/Yi-Li-Chiu-CV-zh.pdf \
+            /files/Yi-Li-Chiu-CV-typst-en.pdf /files/Yi-Li-Chiu-CV-typst-zh.pdf; do
+            curl --fail --silent --show-error --output /dev/null "http://127.0.0.1:8088$route"
+          done
+          for asset in dist/_astro/*; do
+            curl --fail --silent --show-error --output /dev/null "http://127.0.0.1:8088/${asset#dist/}"
+          done
+      - name: Keep verified container site for publication
+        if: matrix.target == 'container'
+        uses: actions/upload-artifact@v4
+        with:
+          name: container-site
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish GHCR image
+    needs: validate
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: container-site
+          path: dist/
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4
+      - name: Log in to GHCR
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and publish verified site
+        id: image
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/arfiligol/i-li-chiu-cv:sha-${{ github.sha }}
+            ghcr.io/arfiligol/i-li-chiu-cv:latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/arfiligol/I-LI_CHIU_CV
+            org.opencontainers.image.revision=${{ github.sha }}
+      - name: Record deployable image identity
+        env:
+          IMAGE_DIGEST: ${{ steps.image.outputs.digest }}
+        run: |
+          {
+            echo '## Container ready for Portainer'
+            echo ''
+            echo 'Use this exact value for CV_IMAGE:'
+            echo ''
+            echo "\`ghcr.io/arfiligol/i-li-chiu-cv@${IMAGE_DIGEST}\`"
+            echo ''
+            echo "Source revision: ${GITHUB_SHA}"
+            echo ''
+            echo 'Publication does not deploy to Portainer or change WordPress/DNS.'
+            echo 'See docs/deployment.md for GitHub permissions and operator instructions.'
+          } >> "$GITHUB_STEP_SUMMARY"

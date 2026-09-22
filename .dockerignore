@@ -1,0 +1,5 @@
+# Only generated public content belongs in the runtime image/build context.
+**
+!Dockerfile
+!dist/
+!dist/**
