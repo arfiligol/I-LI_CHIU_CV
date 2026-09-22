@@ -103,6 +103,8 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      image_digest: ${{ steps.image.outputs.digest }}
     permissions:
       contents: read
       packages: write
@@ -151,3 +153,21 @@ jobs:
             echo 'Publication does not deploy to Portainer or change WordPress/DNS.'
             echo 'See docs/deployment.md for GitHub permissions and operator instructions.'
           } >> "$GITHUB_STEP_SUMMARY"
+
+  promote-deployment:
+    name: Promote immutable image to GitOps branch
+    needs: publish
+    if: needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - name: Promote published digest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          IMAGE_DIGEST: ${{ needs.publish.outputs.image_digest }}
+        run: node scripts/promote-container.mjs

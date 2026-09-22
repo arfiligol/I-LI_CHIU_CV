@@ -8,18 +8,20 @@ acceptance of the complete deployment.
 
 - Goal: use `develop` for routine commit-and-push development and a
   `develop` → `main` Promotion PR for release. Preserve GitHub Pages and the
-  root-site container target, document loopback-only live-edit preview, and
-  adapt production Compose to the deployment owner's external `npm_net`.
+  root-site container target. After a successful `main` image publication,
+  publish the exact immutable image digest to the generated
+  `deploy/production` branch so Portainer can poll that branch.
 - Exclusions: redesign, resume edits, Portainer administration, automatic
   production redeployment, hosted development preview, DNS/Authentik/TLS
-  changes, digest-promotion automation, and WordPress changes.
-- Validation: scoped workflow/Compose/rule checks, loopback binding and a real
-  edit/restore preview check, plus the existing dual-target container CI on
-  `develop`. Previous build/PDF evidence remains applicable to unchanged source;
-  CI runs its existing commands, including isolated container HTTP checks.
-- Delivery endpoint: pushed `develop`, one draft `develop` → `main` Promotion
-  PR replacing the old topic release candidate, and CI evidence. No main merge,
-  GHCR publication, deployment or parent-workspace gitlink change in this task.
+  changes, WordPress changes, and any change to the root `compose.yaml`.
+- Validation: scoped workflow/script/document/rule checks, Node syntax checking,
+  Actionlint, and ephemeral local GitHub-API diagnostics. Existing dual-target
+  container CI remains the build and HTTP-validation evidence; it is not a
+  Portainer deployment or endpoint check.
+- Delivery endpoint: the authorized `develop` → `main` Promotion PR is merged,
+  its `main` publication succeeds, and the resulting generated deployment ref
+  records that exact digest. This source package does not administer Portainer,
+  NPM, DNS, or the parent-workspace gitlink.
 
 ## Branches and local development
 
@@ -35,7 +37,9 @@ branch or change its gitlink as a side effect of CV development.
 - `main` owns GitHub Pages and production image publication. No workflow on
   `develop` publishes a public site or production image, even when dispatched
   manually. Public `arfiligol.tw` uses a main-built image selected by the
-  deployment owner; merging does not itself update Portainer yet.
+  deployment owner. After a successful main publication promotes its immutable
+  digest, operator-configured one-minute GitOps polling can update the stack;
+  this is still distinct from proving the stack or public endpoint is healthy.
 - Preserve Human WIP: do not switch a dirty checkout, reset, stash or include
   unrelated files automatically. Use the existing clean develop worktree or
   create a separate worktree when needed. Before ordinary work in a clean
@@ -86,9 +90,19 @@ environment values and registry credentials; never commit credentials.
 manual dispatch. `container.yml` validates both targets on develop/main pushes
 and Promotion PRs to main. Develop and pull requests never publish.
 On `main`, after validation, CI publishes `ghcr.io/arfiligol/i-li-chiu-cv`
-with `sha-<full commit SHA>` and `latest` tags, and records the image digest in
-the run summary. Use that digest for a repeatable deployment or rollback;
-tags (including SHA-named tags on a rerun) can be republished.
+with `sha-<full commit SHA>` and `latest` tags. A separate promotion job then
+uses the publishing action's exact digest to update `deploy/production`.
+That generated branch contains only `compose.yaml` and `release.json`:
+`compose.yaml` has the same external `npm_net`, alias, and no-host-port
+structure as the source Compose file, but its image is a literal
+`ghcr.io/arfiligol/i-li-chiu-cv@sha256:...` value. `release.json` records the
+source SHA, image digest, and Actions workflow URL.
+
+The promotion job has job-scoped `contents: write`; the workflow default and
+all other jobs retain their current permissions. It uses only the automatic
+`GITHUB_TOKEN`, never a PAT, deploy key, Portainer credential, or new package.
+The branch is outside the main/develop workflow triggers, and pushes made with
+that token do not recursively start this workflow.
 
 The image index includes Linux amd64 and arm64. Runtime HTTP validation runs
 on amd64 only; this is not a claim of testing the target Portainer host.
@@ -100,7 +114,8 @@ on amd64 only; this is not a claim of testing the target Portainer host.
    and check that both validation jobs and publication succeed.
 2. No Docker Hub account, long-lived push token, or Portainer Secret is needed
    for this phase. CI uses the repository's automatic `GITHUB_TOKEN`, with
-   `packages: write` limited to the publication job.
+   `packages: write` limited to the publication job and `contents: write`
+   limited to the generated-branch promotion job.
 3. If repository/organization Actions policy blocks an action or package
    publication, allow the referenced actions and this repository's package
    write access. Do not globally broaden permissions as a first workaround.
@@ -125,14 +140,14 @@ on `npm_net` before deploying; source work does not inspect or change the host.
 1. In the intended Docker Standalone environment, open **Stacks → Add stack →
    Git repository**. Name the new stack `i-li-chiu-cv`.
 2. Select/create the source `https://github.com/arfiligol/I-LI_CHIU_CV.git`,
-   reference `refs/heads/main`, Compose path `compose.yaml`. This source repo
-   is public. Git credentials and GHCR pull credentials are separate.
-3. Add environment variables:
-   - `CV_IMAGE`: the complete `ghcr.io/arfiligol/i-li-chiu-cv@sha256:...` value
-     from the successful publication summary. It is required, with no implicit
-     `latest` fallback.
-4. Select the authenticated GHCR registry if the package is private. Leave
-   **GitOps updates off** for this first deployment. Deploy the stack.
+   reference `refs/heads/deploy/production`, Compose path `compose.yaml`. This
+   source repo is public. Git credentials and GHCR pull credentials are
+   separate.
+3. Do not add `CV_IMAGE`: the generated Compose file carries the published
+   immutable digest and deliberately has no mutable-tag fallback.
+4. Select the authenticated GHCR registry if the package is private. Enable
+   Portainer GitOps polling at **1 minute** and leave **Force redeployment**
+   off, then deploy the stack.
 5. Production Compose publishes **no host ports**. Both NPM and the CV must
    attach to `npm_net`; Compose will fail if this external network is absent.
    NPM's upstream is scheme `http`, hostname `i-li-chiu-cv`, port `80`.
@@ -144,25 +159,32 @@ on `npm_net` before deploying; source work does not inspect or change the host.
 This Compose file is for Docker Standalone, not Swarm. CI checks the Compose
 syntax but runs its smoke container separately on an ephemeral CI-only
 loopback port. It never requires or creates the production `npm_net` network.
-NPM public routing/TLS and DNS remain deployment-owner/Human operations.
+NPM public routing/TLS and DNS remain deployment-owner/Human operations. The
+operator must verify the selected GHCR registry credentials with an uncached
+pull: an already cached image or pre-pull does not prove Portainer will
+authenticate and fetch the intended digest.
 
-## Updates, rollback, and later GitOps
+## Updates and rollback through GitOps
 
-For this phase, copy a new successful image digest into `CV_IMAGE` in Portainer
-and redeploy. Roll back by restoring the previous digest and redeploying; retain
-previous images. Keep the current WordPress stack and data intact until the
-separate domain migration is verified.
+Image publication and a generated-branch update are CI delivery facts, not
+proof that Portainer fetched, recreated, or served the new container. Validate
+the Portainer stack and public endpoint separately. The promotion script first
+checks that `main` still names the published source SHA, rejects any unexpected
+file on `deploy/production`, and uses a normal non-force ref update. If main
+advanced or a concurrent generated-branch update wins, it stops without
+overwriting anything. The source-main check and deployment-ref update are not a
+distributed atomic transaction; a later main publication supersedes a stale
+candidate safely by issuing its own promotion.
 
-Image publication is CI delivery, not proof that Portainer deployed it. Merely
-enabling Git polling will not update the digest stored in `CV_IMAGE`. Do not
-turn on polling against a mutable `latest` tag before CI has finished building.
-
-The later GitOps setup must connect successful image publication to the desired
-deployment revision. Choose the supported mechanism after checking the actual
-Portainer version/edition: for example, a Git-tracked digest manifest updated
-only after publication, or a CI-triggered webhook with explicit image selection.
-No webhook is called or secret required by this workflow. Do not expose the
-Portainer admin interface solely to make a webhook reachable.
+To roll back, disable the **Build CV container** workflow and cancel or wait
+for active runs before changing `deploy/production`; pausing Portainer polling
+alone does not stop CI promotion. Create and push a normal restoration commit
+that restores both exact files from a known-good generated-branch commit:
+`compose.yaml` and its matching `release.json` with the existing provenance
+schema. Then let polling apply that commit or redeploy it. Re-enable future
+publishing intentionally only after confirming the intended state. Retain
+previous images. Never roll back by changing `latest`, force-pushing the
+generated branch, or editing the production stack's image ad hoc.
 
 Before switching `arfiligol.tw`, back up WordPress files/database, record its
 current proxy route and rollback procedure, then configure TLS and the CV
