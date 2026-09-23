@@ -10,6 +10,8 @@
     "build": "astro build",
     "pdf": "node scripts/generate-pdf.mjs",
     "pdf:typst": "node scripts/generate-typst.mjs",
+    "slides:validate": "python3 scripts/presentations/validate_report_spec.py",
+    "slides:build": "node scripts/presentations/build-deck.mjs",
     "preview": "astro preview --host 127.0.0.1"
   },
   "dependencies": {
