@@ -2,7 +2,7 @@
 
 ## Project Goal
 
-Build and maintain a bilingual academic CV website for Yi-Li Chiu that can be deployed to GitHub Pages or as a static container and can generate high-quality downloadable PDFs.
+Build and maintain a bilingual academic CV website for I-LI CHIU that can be deployed to GitHub Pages or as a static container and can generate high-quality downloadable PDFs.
 
 ## Stack Summary
 

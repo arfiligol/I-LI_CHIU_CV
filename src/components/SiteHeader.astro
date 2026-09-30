@@ -9,7 +9,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = localized(lang);
-const primaryPdf = lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li-Chiu-CV-en.pdf";
+const primaryPdf = lang === "zh" ? "/files/I-LI-CHIU-CV-zh.pdf" : "/files/I-LI-CHIU-CV-en.pdf";
 ---
 
 <header class="site-header">
@@ -20,8 +20,10 @@ const primaryPdf = lang === "zh" ? "/files/Yi-Li-Chiu-CV-zh.pdf" : "/files/Yi-Li
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <a href="#profile">{content.nav.profile}</a>
-      <a href="#projects">{content.nav.projects}</a>
+      <a href="#expertise">{content.nav.expertise}</a>
+      <a href="#research">{content.nav.research}</a>
+      <a href="#software">{content.nav.software}</a>
+      <a href="#design">{content.nav.design}</a>
       <a href="#education">{content.nav.education}</a>
     </nav>
 

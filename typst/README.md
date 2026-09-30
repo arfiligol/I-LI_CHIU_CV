@@ -10,7 +10,7 @@ pnpm pdf:typst
 
 Outputs:
 
-- `dist/files/Yi-Li-Chiu-CV-typst-en.pdf`
-- `dist/files/Yi-Li-Chiu-CV-typst-zh.pdf`
+- `dist/files/I-LI-CHIU-CV-typst-en.pdf`
+- `dist/files/I-LI-CHIU-CV-typst-zh.pdf`
 
 Generated `.typ` files are written to `build/typst/` and are not committed.

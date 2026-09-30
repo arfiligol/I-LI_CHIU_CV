@@ -10,6 +10,11 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = localized(lang);
+const sections = [
+  { id: "research", title: content.sections.research, projects: content.research },
+  { id: "software", title: content.sections.software, projects: content.software },
+  { id: "design", title: content.sections.design, projects: content.design },
+];
 ---
 
 <div class="page-shell">
@@ -17,12 +22,29 @@ const content = localized(lang);
   <Hero lang={lang} />
 
   <main>
-    <section class="content-band" id="profile">
+    <nav class="section-nav" aria-label={lang === "zh" ? "頁面區塊" : "Page sections"}>
+      <a href="#expertise">{content.nav.expertise}</a>
+      <a href="#research">{content.nav.research}</a>
+      <a href="#software">{content.nav.software}</a>
+      <a href="#design">{content.nav.design}</a>
+      <a href="#education">{content.nav.education}</a>
+    </nav>
+
+    <section class="content-band" id="expertise">
       <div class="section-heading">
-        <h2>{content.sections.about}</h2>
+        <h2>{content.sections.expertise}</h2>
+      </div>
+      <div class="expertise-grid">
+        {content.expertise.map((item) => (
+          <article class="expertise-card">
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
       </div>
       <div class="profile-grid">
         <div class="about-copy">
+          <h3>{content.sections.about}</h3>
           {content.about.map((paragraph) => <p>{paragraph}</p>)}
         </div>
         <aside class="summary-panel" aria-labelledby="summary-title">
@@ -32,31 +54,44 @@ const content = localized(lang);
       </div>
     </section>
 
-    <section class="content-band content-band--tight" id="projects">
-      <div class="section-heading">
-        <h2>{content.sections.projects}</h2>
-      </div>
-      <div class="project-stack">
-        {content.projects.map((project) => (
-          <article class="project-card">
-            <div class="project-card__top">
-              <div>
-                <h3>{project.title}</h3>
-                <p class="project-card__meta">{project.meta}</p>
+    {sections.map((section) => (
+      <section class="content-band content-band--tight" id={section.id}>
+        <div class="section-heading">
+          <h2>{section.title}</h2>
+        </div>
+        <div class="project-stack">
+          {section.projects.map((project) => (
+            <article class="project-card">
+              <div class="project-card__top">
+                <div>
+                  <h3>{project.title}</h3>
+                  <p class="project-card__meta">{project.meta}</p>
+                </div>
+                <ul class="project-tags" aria-label={lang === "zh" ? "專案主題" : "Project themes"}>
+                  {project.tags.map((tag) => <li>{tag}</li>)}
+                </ul>
               </div>
-              <ul class="project-tags" aria-label="Project themes">
-                {project.tags.map((tag) => <li>{tag}</li>)}
+              <ul>
+                {project.bullets.map((bullet) => (
+                  <li><strong>{bullet.label}:</strong> {bullet.text}</li>
+                ))}
               </ul>
-            </div>
-            <ul>
-              {project.bullets.map((bullet) => (
-                <li><strong>{bullet.label}:</strong> {bullet.text}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </section>
+              {"url" in project && typeof project.url === "string" && (
+                <a class="project-source" href={project.url} target="_blank" rel="noopener noreferrer">
+                  {section.id === "design" ? content.sections.docs : content.sections.source} ↗
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+        {section.id === "research" && (
+          <div class="practice-note">
+            <h3>{content.sections.practice}</h3>
+            <ul>{content.practice.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        )}
+      </section>
+    ))}
 
     <section class="content-band content-band--tight" id="education">
       <div class="section-heading">
@@ -66,9 +101,7 @@ const content = localized(lang);
         <article class="education-card">
           <h3>{item.school}</h3>
           <p>{item.degree} · {item.period}</p>
-          <ul>
-            {item.details.map((detail) => <li>{detail}</li>)}
-          </ul>
+          {item.details.length > 0 && <ul>{item.details.map((detail) => <li>{detail}</li>)}</ul>}
         </article>
       ))}
     </section>

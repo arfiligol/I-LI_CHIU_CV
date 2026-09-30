@@ -81,8 +81,8 @@ jobs:
           done
           [ "$health" = healthy ]
           for route in / /zh/ /print/en/ /print/zh/ \
-            /files/Yi-Li-Chiu-CV-en.pdf /files/Yi-Li-Chiu-CV-zh.pdf \
-            /files/Yi-Li-Chiu-CV-typst-en.pdf /files/Yi-Li-Chiu-CV-typst-zh.pdf; do
+            /files/I-LI-CHIU-CV-en.pdf /files/I-LI-CHIU-CV-zh.pdf \
+            /files/I-LI-CHIU-CV-typst-en.pdf /files/I-LI-CHIU-CV-typst-zh.pdf; do
             curl --fail --silent --show-error --output /dev/null "http://127.0.0.1:8088$route"
           done
           for asset in dist/_astro/*; do
