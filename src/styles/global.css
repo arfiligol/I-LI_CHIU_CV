@@ -76,23 +76,14 @@ a {
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
   min-width: 0;
-  font-weight: 780;
 }
 
 .brand-logo {
   display: block;
   width: 168px;
   height: auto;
-}
-
-.brand-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
+  filter: saturate(0.55) hue-rotate(10deg);
 }
 
 .nav {
