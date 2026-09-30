@@ -10,12 +10,13 @@ interface Props {
 const { lang } = Astro.props;
 const content = localized(lang);
 const primaryPdf = lang === "zh" ? "/files/I-LI-CHIU-CV-zh.pdf" : "/files/I-LI-CHIU-CV-en.pdf";
+const logoSrc = `${withBase("/images/arfiligol-logo.png")}?v=33afe23b`;
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
     <a class="brand" href={withBase(lang === "zh" ? "/zh/" : "/")} aria-label={resumeData.contact.name[lang]}>
-      <img class="brand-logo" src={withBase("/images/arfiligol-logo.png")} alt="" />
+      <img class="brand-logo" src={logoSrc} alt="" />
     </a>
 
     <nav class="nav" aria-label="Primary">
