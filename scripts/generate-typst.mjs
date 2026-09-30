@@ -10,8 +10,8 @@ const outDir = path.join(root, "dist", "files");
 
 const resume = JSON.parse(await readFile(dataPath, "utf8"));
 const outputs = [
-  { lang: "en", file: "Yi-Li-Chiu-CV-typst-en.pdf" },
-  { lang: "zh", file: "Yi-Li-Chiu-CV-typst-zh.pdf" },
+  { lang: "en", file: "I-LI-CHIU-CV-typst-en.pdf" },
+  { lang: "zh", file: "I-LI-CHIU-CV-typst-zh.pdf" },
 ];
 
 function escapeTypst(value) {
@@ -38,10 +38,6 @@ function bullet(label, text) {
   return `- *${escapeTypst(label)}:* ${escapeTypst(text)}`;
 }
 
-function list(items) {
-  return items.map((item) => `- ${escapeTypst(item)}`).join("\n");
-}
-
 function detectFont() {
   const candidates = [
     "Noto Sans CJK TC",
@@ -60,23 +56,28 @@ function detectFont() {
 function render(lang, fontName) {
   const content = resume.languages[lang];
   const contact = resume.contact;
-  const summary = content.summary.map(escapeTypst).join("\n\n");
-  const projects = content.projects
-    .map((project) =>
+  const expertise = content.expertise
+    .map((item) => bullet(item.title, item.text))
+    .join("\n");
+  const work = [
+    { title: content.sections.research, projects: content.research },
+    { title: content.sections.software, projects: content.software },
+    { title: content.sections.design, projects: content.design },
+  ].map(({ title, projects }) =>
+    [section(title), projects.map((project) =>
       [
         `#text(size: 9.8pt, weight: "bold")[${escapeTypst(project.title)}]`,
         `#text(size: 8.8pt, fill: muted)[${escapeTypst(project.meta)}]`,
-        `#text(size: 8pt, fill: accent)[${escapeTypst(project.tags.join(" / "))}]`,
-        project.bullets.map((item) => bullet(item.label, item.text)).join("\n"),
+        bullet(project.bullets[0].label, project.bullets[0].text),
+        project.url ? `#link("${project.url}")[${escapeTypst(project.url)}]` : "",
       ].join("\n"),
-    )
-    .join("\n\n");
+    ).join("\n\n"), title === content.sections.research ? escapeTypst(content.practice.join(" ")) : ""].join("\n\n"),
+  ).join("\n\n");
   const education = content.education
     .map((item) =>
       [
         `#text(size: 9.8pt, weight: "bold")[${escapeTypst(item.school)}]`,
         `${escapeTypst(item.degree)} · ${escapeTypst(item.period)}`,
-        list(item.details),
       ].join("\n"),
     )
     .join("\n\n");
@@ -95,10 +96,12 @@ function render(lang, fontName) {
 ]
 
 ${section(content.sections.summary)}
-${summary}
+${escapeTypst(content.summary[0])}
 
-${section(content.sections.projects)}
-${projects}
+${section(content.sections.expertise)}
+${expertise}
+
+${work}
 
 ${section(content.sections.education)}
 ${education}

@@ -12,8 +12,8 @@ const port = process.env.PREVIEW_PORT ?? "4321";
 const basePath = (process.env.BASE_PATH ?? "/I-LI_CHIU_CV").replace(/\/$/, "");
 
 const outputs = [
-  { lang: "en", file: "Yi-Li-Chiu-CV-en.pdf" },
-  { lang: "zh", file: "Yi-Li-Chiu-CV-zh.pdf" },
+  { lang: "en", file: "I-LI-CHIU-CV-en.pdf" },
+  { lang: "zh", file: "I-LI-CHIU-CV-zh.pdf" },
 ];
 
 async function exists(filePath) {

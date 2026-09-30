@@ -300,6 +300,30 @@ html[lang="zh-Hant"] .hero h1 {
   padding: 110px 0;
 }
 
+.content-band[id] {
+  scroll-margin-top: 90px;
+}
+
+.section-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  width: min(1120px, calc(100% - 52px));
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 760;
+}
+
+.section-nav a:hover,
+.project-source:hover {
+  color: var(--accent-deep);
+  text-decoration: underline;
+}
+
 .content-band--tight {
   padding-top: 60px;
 }
@@ -335,6 +359,33 @@ html[lang="zh-Hant"] .hero h1 {
   grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.78fr);
   gap: clamp(42px, 6.5vw, 88px);
   align-items: start;
+  margin-top: 50px;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.expertise-card {
+  border-top: 4px solid var(--accent);
+  padding: 23px 22px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.expertise-card h3,
+.about-copy h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.expertise-card p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.72;
 }
 
 .about-copy {
@@ -453,6 +504,32 @@ html[lang="zh-Hant"] .hero h1 {
   color: var(--ink);
 }
 
+.project-source {
+  width: fit-content;
+  color: var(--accent-deep);
+  font-size: 0.9rem;
+  font-weight: 760;
+}
+
+.practice-note {
+  margin-top: 32px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  color: var(--muted);
+}
+
+.practice-note h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.practice-note ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
 .education-card {
   border-top: 1px solid var(--line);
   padding-top: 30px;
@@ -516,7 +593,7 @@ html[lang="zh-Hant"] .hero h1 {
   gap: 16px;
   align-items: start;
   border-bottom: 1.4px solid #5d9ead;
-  padding-bottom: 8mm;
+  padding-bottom: 6mm;
 }
 
 .print-header h1 {
@@ -540,8 +617,18 @@ html[lang="zh-Hant"] .hero h1 {
 }
 
 .print-section {
-  break-inside: avoid;
-  margin-top: 6.3mm;
+  margin-top: 5.4mm;
+}
+
+.print-expertise {
+  margin: 0;
+  padding-left: 4mm;
+}
+
+.print-expertise li {
+  margin: 1.4mm 0;
+  font-size: 9.3px;
+  line-height: 1.43;
 }
 
 .print-section h2 {
@@ -581,6 +668,14 @@ html[lang="zh-Hant"] .hero h1 {
 .print-project {
   break-inside: avoid;
   margin-top: 3.7mm;
+}
+
+.print-project__url {
+  display: block;
+  margin-top: 1.3mm;
+  overflow-wrap: anywhere;
+  color: #356b76;
+  font-size: 8.4px;
 }
 
 .print-project__meta,
@@ -629,6 +724,10 @@ html[lang="zh-Hant"] .hero h1 {
 }
 
 @media (max-width: 900px) {
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
   .profile-grid {
     grid-template-columns: 1fr;
   }
@@ -737,6 +836,11 @@ html[lang="zh-Hant"] .hero h1 {
   .content-band {
     width: min(100% - 30px, 1120px);
     padding: 76px 0;
+  }
+
+  .section-nav {
+    width: min(100% - 30px, 1120px);
+    justify-content: flex-start;
   }
 
   .content-band--tight {

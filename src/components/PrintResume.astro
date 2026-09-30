@@ -8,6 +8,11 @@ interface Props {
 
 const { lang } = Astro.props;
 const content = localized(lang);
+const workSections = [
+  { title: content.sections.research, projects: content.research },
+  { title: content.sections.software, projects: content.software },
+  { title: content.sections.design, projects: content.design },
+];
 ---
 
 <main class="print-shell">
@@ -26,26 +31,34 @@ const content = localized(lang);
 
     <section class="print-section">
       <h2>{content.sections.summary}</h2>
-      {content.summary.map((paragraph) => <p>{paragraph}</p>)}
+      <p>{content.summary[0]}</p>
     </section>
 
     <section class="print-section">
-      <h2>{content.sections.projects}</h2>
-      {content.projects.map((project) => (
-        <article class="print-project">
-          <h3>{project.title}</h3>
-          <div class="print-project__meta">{project.meta}</div>
-          <div class="print-tags">
-            {project.tags.map((tag) => <span>{tag}</span>)}
-          </div>
-          <ul>
-            {project.bullets.map((bullet) => (
-              <li><strong>{bullet.label}:</strong> {bullet.text}</li>
-            ))}
-          </ul>
-        </article>
-      ))}
+      <h2>{content.sections.expertise}</h2>
+      <ul class="print-expertise">
+        {content.expertise.map((item) => <li><strong>{item.title}:</strong> {item.text}</li>)}
+      </ul>
     </section>
+
+    {workSections.map((section) => (
+      <section class="print-section">
+        <h2>{section.title}</h2>
+        {section.projects.map((project) => (
+          <article class="print-project">
+            <h3>{project.title}</h3>
+            <div class="print-project__meta">{project.meta}</div>
+            <ul>
+              <li><strong>{project.bullets[0].label}:</strong> {project.bullets[0].text}</li>
+            </ul>
+            {"url" in project && typeof project.url === "string" && (
+              <a class="print-project__url" href={project.url}>{project.url}</a>
+            )}
+          </article>
+        ))}
+        {section.title === content.sections.research && <p>{content.practice.join(" ")}</p>}
+      </section>
+    ))}
 
     <section class="print-section">
       <h2>{content.sections.education}</h2>
@@ -53,9 +66,6 @@ const content = localized(lang);
         <article class="print-education">
           <h3>{item.school}</h3>
           <p>{item.degree} · {item.period}</p>
-          <ul>
-            {item.details.map((detail) => <li>{detail}</li>)}
-          </ul>
         </article>
       ))}
     </section>

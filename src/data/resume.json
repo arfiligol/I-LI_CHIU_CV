@@ -24,42 +24,62 @@
   "languages": {
     "en": {
       "meta": {
-        "title": "I-LI CHIU | Superconducting Quantum RF Student",
-        "description": "Academic CV for I-LI CHIU, focused on superconducting quantum circuits, RF simulation, physics-centered data practice, and human-led AI-assisted research workflows."
+        "title": "I-LI CHIU | Physics M.S. Student & Scientific Software",
+        "description": "Portfolio of I-LI CHIU, a physics M.S. student working on superconducting circuits, computational electromagnetics, microwave networks, scientific software, and technical design."
       },
       "nav": {
-        "profile": "About",
-        "projects": "Work",
+        "expertise": "Expertise",
+        "research": "Research",
+        "software": "Software",
+        "design": "Design",
         "education": "Education",
         "languageLabel": "中文",
         "languageHref": "/zh/",
         "download": "Download PDF"
       },
       "hero": {
-        "headline": "Physics student turning uncertain questions into verifiable research systems.",
-        "role": "Superconducting Quantum RF Student",
-        "summary": "I am building a physics-centered data practice: learning superconducting quantum systems while developing the tools to generate, manage, analyze, and verify research data."
+        "headline": "From physical models to inspectable research tools.",
+        "role": "Physics M.S. Student · Superconducting Circuits",
+        "summary": "I am a physics M.S. student at National Central University working on superconducting circuits. I study how physical models become trustworthy numerical results and build research tools that make models, simulation workflows, and results inspectable."
       },
       "sections": {
         "about": "About Me",
-        "summary": "Professional Summary",
-        "projects": "Selected Work",
+        "summary": "Profile",
+        "expertise": "Core Expertise",
+        "research": "Research",
+        "software": "Scientific Software",
+        "design": "Design Systems",
+        "practice": "Additional Practice",
+        "source": "Source",
+        "docs": "Docs",
         "education": "Education",
         "contact": "Contact",
         "downloads": "Downloads"
       },
       "about": [
-        "I am drawn to problems that begin as a rough physical question rather than a clean assignment. My habit is to slow the problem down, name the assumptions, and build a small loop that can be checked by code, simulation, or data.",
-        "The road I am building is not about becoming someone who only knows how to use tools. I want tools to become leverage for understanding physical questions; data generation, management, and analysis are ways to make research inspectable, reproducible, and extensible.",
-        "AI is part of that loop, but not a replacement for judgment. I use it to widen the search space, draft competing implementations, find blind spots, and accelerate documentation; the final answer still has to survive derivations, numerical checks, and direct inspection.",
-        "I care about quiet, reliable systems. A good script, storage setup, simulation report, or note should make the next question easier for future me and for the people working with me."
+        "I work from physical assumptions through circuit and electromagnetic models to results that can be inspected and compared. Research workflows matter to me because they keep those steps connected.",
+        "I collaborate with AI agents to explore approaches, draft implementations, and organize documentation. I then use physical reasoning, numerical checks, and comparisons with published and other existing work to examine the assumptions, methods, and results."
       ],
       "summary": [
-        "Physics undergraduate at National Central University, expected to graduate in 2026 and planning to continue graduate study in physics, focused on superconducting quantum circuits and research data workflows.",
-        "Connects theoretical assumptions, layout-level design, solver outputs, and compute infrastructure into reviewable loops that can be tested, refined, and reused.",
-        "Develops practical systems for data generation, management, analysis, and verification while using human-led, AI-assisted development to explore options faster without outsourcing judgment."
+        "Physics M.S. student at National Central University; B.S. in Physics, 2026.",
+        "Works across superconducting-circuit modeling, electromagnetic simulation, and RF/microwave network analysis.",
+        "Builds research software and technical reading systems that make complex work easier to inspect."
       ],
-      "projects": [
+      "expertise": [
+        {
+          "title": "Computational Electromagnetics & FEM",
+          "text": "Derive weak formulations, basis functions, and matrix discretizations from electromagnetic and electrostatic governing equations; examine how materials, boundary conditions, meshes, and convergence affect fields and derived quantities."
+        },
+        {
+          "title": "RF/Microwave Network Analysis",
+          "text": "Use multiport S-, Y-, and Z-parameters and their conversions; account for port definitions, reference impedances, and terminations when interpreting reflection and transmission."
+        },
+        {
+          "title": "Superconducting Circuit Modeling",
+          "text": "Connect nodal admittance, modes, and poles to circuit coupling and energy-relaxation questions."
+        }
+      ],
+      "research": [
         {
           "title": "Floating-Qubit Energy Relaxation Study",
           "meta": "Undergraduate thesis, National Central University",
@@ -83,7 +103,7 @@
           "title": "Layout-to-FEM Research Workflow",
           "meta": "Research data generation through simulation automation",
           "tags": [
-            "AI-assisted tooling",
+            "Physical modeling",
             "Simulation automation",
             "Parameter sweep"
           ],
@@ -93,59 +113,77 @@
               "text": "Developed a data-generation workflow from GDSII layout to FEM simulation, connected to parametric design tooling so layout changes could become solver-ready experiments more quickly."
             },
             {
-              "label": "Used AI as engineering leverage",
-              "text": "Worked in human-led, AI-assisted loops to draft automation paths, compare implementation options, review generated code, and keep the tooling tied to the underlying physics constraints."
-            },
-            {
               "label": "Mapped circuit parameters",
               "text": "Linked lumped circuit models to Hamiltonian-level quantities around coupling strength and ZZ interaction space, enabling targeted scans for calibration-sensitive parameters."
             }
           ]
-        },
+        }
+      ],
+      "practice": [
+        "Used National Center for High-performance Computing (NCHC) resources and mesh-refinement studies to compare solver cost, numerical differences, and reliability.",
+        "Helped maintain a lab Synology NAS and maintained a personal TrueNAS/Docker environment for research data, backups, and local compute."
+      ],
+      "software": [
         {
-          "title": "Compute and Mesh-Refinement Operations",
-          "meta": "Simulation data analysis and verification",
+          "title": "SCGSim",
+          "meta": "Superconducting-circuit simulation toolkit · V1 in development",
           "tags": [
-            "HPC operations",
-            "Mesh refinement",
-            "Numerical reliability"
+            "Computational electromagnetics",
+            "Solver workflows"
           ],
           "bullets": [
             {
-              "label": "Ran larger solver workloads",
-              "text": "Used National Center for High-performance Computing (NCHC) cluster resources to produce and inspect larger simulation datasets for complex layout FEM models."
-            },
-            {
-              "label": "Balanced time and accuracy",
-              "text": "Tuned mesh-refinement parameters systematically so runtime, resource usage, numerical differences, and reliability could be evaluated with concrete evidence."
+              "label": "Physical meaning through the workflow",
+              "text": "Connects geometry, materials, boundaries, and solver configuration to electromagnetic results with traceable run and result identities."
             }
-          ]
+          ],
+          "url": "https://github.com/OrPenStrike/scgsim"
         },
         {
-          "title": "Research Infrastructure and Data Environment",
-          "meta": "Research data management and compute operations",
+          "title": "SCNSim",
+          "meta": "Superconducting circuit network simulation · V1 in development",
           "tags": [
-            "NAS operations",
-            "Docker",
-            "Research systems"
+            "Circuit modeling",
+            "Network analysis"
           ],
           "bullets": [
             {
-              "label": "Supported lab data practices",
-              "text": "Helped maintain a lab-scale Synology NAS environment, improving backup habits, team access, and day-to-day reliability for research data."
-            },
-            {
-              "label": "Built personal research infrastructure",
-              "text": "Maintained a customized TrueNAS system integrated with Docker for research-data organization, automated backups, and flexible local compute environments."
+              "label": "Model before result",
+              "text": "Keeps authored circuits, ports, selected network views, and S/Y/Z or modal analysis tied to explicit assumptions and reproducible results."
             }
-          ]
+          ],
+          "url": "https://github.com/OrPenStrike/scnsim"
+        }
+      ],
+      "design": [
+        {
+          "title": "Askr",
+          "meta": "Quarto design kit for technical reading",
+          "tags": [
+            "Typography",
+            "Documentation",
+            "Information design"
+          ],
+          "bullets": [
+            {
+              "label": "Designed for reading",
+              "text": "Shapes typography, page measure, navigation, citations, and callouts into a coherent reading experience for technical documents."
+            }
+          ],
+          "url": "https://arfiligol.github.io/askr/"
         }
       ],
       "education": [
         {
           "school": "National Central University",
+          "degree": "M.S. in Physics",
+          "period": "2026–present",
+          "details": []
+        },
+        {
+          "school": "National Central University",
           "degree": "B.S. in Physics",
-          "period": "Expected 2026",
+          "period": "2026",
           "details": [
             "Thesis: Study of XY-Line External Coupling Effects on Floating Qubit Energy Relaxation"
           ]
@@ -154,52 +192,72 @@
       "downloads": [
         {
           "label": "English PDF",
-          "href": "/files/Yi-Li-Chiu-CV-en.pdf"
+          "href": "/files/I-LI-CHIU-CV-en.pdf"
         },
         {
           "label": "Chinese PDF",
-          "href": "/files/Yi-Li-Chiu-CV-zh.pdf"
+          "href": "/files/I-LI-CHIU-CV-zh.pdf"
         }
       ]
     },
     "zh": {
       "meta": {
-        "title": "邱羿理 | 超導量子 RF 學生",
-        "description": "邱羿理的學術履歷，聚焦超導量子電路、RF 模擬、以物理研究為核心的資料實作能力與 human-led AI-assisted 研究流程。"
+        "title": "邱羿理 | 物理碩士生與科學軟體",
+        "description": "邱羿理的作品集：超導量子電路、計算電磁學、微波網路分析、科學軟體與技術文件設計。"
       },
       "nav": {
-        "profile": "關於",
-        "projects": "經歷",
+        "expertise": "專業",
+        "research": "研究",
+        "software": "軟體",
+        "design": "設計",
         "education": "教育",
         "languageLabel": "English",
         "languageHref": "/",
         "download": "下載 PDF"
       },
       "hero": {
-        "headline": "把模糊的物理問題整理成可驗證研究系統的學生。",
-        "role": "Superconducting Quantum RF Student",
-        "summary": "我正在建立一套以物理研究為核心的資料實作能力：一邊深化超導量子系統的理解，一邊強化產生、管理、分析與驗證研究資料的工具能力。"
+        "headline": "從物理模型走向可檢查的研究工具。",
+        "role": "中央大學物理所碩士生 · 超導量子電路",
+        "summary": "我在國立中央大學攻讀物理碩士，研究超導量子電路。我關心物理模型如何變成可信的數值結果，也建立讓模型、模擬流程與結果能被檢查的研究工具。"
       },
       "sections": {
         "about": "關於我",
         "summary": "個人簡介",
-        "projects": "精選經歷",
+        "expertise": "核心專業",
+        "research": "研究",
+        "software": "科學軟體",
+        "design": "設計系統",
+        "practice": "其他實務經驗",
+        "source": "原始碼",
+        "docs": "文件",
         "education": "教育背景",
         "contact": "聯絡資訊",
         "downloads": "下載"
       },
       "about": [
-        "我喜歡處理一開始還不乾淨、甚至有點模糊的問題。我的習慣是先把問題放慢，把假設、證據與不確定性分開，再做出一個可以被程式、模擬或資料檢查的小循環。",
-        "我現在走的路，不是把自己訓練成只會使用工具的人，而是把工具變成理解物理問題的槓桿。資料的產生、管理與分析，對我來說不是附屬技能，而是讓研究問題能被檢查、重現與延伸的方法。",
-        "AI 是這個循環的一部分，但不是取代判斷的捷徑。我會用它擴大搜尋空間、草擬不同實作、找出盲點與加速文件整理；最後仍要回到推導、數值檢查與人工驗證。",
-        "我在意安靜而可靠的系統。好的腳本、儲存環境、模擬報告或研究筆記，應該讓未來的自己與合作的人更容易提出下一個問題。"
+        "我從物理假設出發，透過電路與電磁模型走向可檢查、可比較的結果。研究工作流的重要性，在於讓這些步驟彼此連接，而非留下孤立的數值。",
+        "我會與 AI agent 協作，探索不同做法、草擬實作並整理文件；接著用物理理解、數值檢查，以及與論文和其他既有成果的交叉比對，檢視假設、方法與結果是否合理。"
       ],
       "summary": [
-        "國立中央大學物理系學士班學生，預計 2026 年畢業，並預計續讀物理系研究所；目前聚焦超導量子電路與研究資料工作流。",
-        "能將理論假設、layout 設計、solver 輸出與運算基礎設施串成可檢查、可修正、可重用的研究迴圈。",
-        "建立資料產生、管理、分析與驗證的實務系統，並以 human-led, AI-assisted 的方式加速探索與實作，但不把判斷外包給工具。"
+        "國立中央大學物理所碩士生；2026 年取得物理學學士學位。",
+        "研究超導量子電路，結合電磁模擬、電路建模與射頻／微波網路分析。",
+        "建立科學軟體與技術閱讀系統，讓複雜工作更容易檢查與理解。"
       ],
-      "projects": [
+      "expertise": [
+        {
+          "title": "計算電磁學與有限元素法",
+          "text": "從電磁與靜電問題的控制方程推導弱形式、基底函數與矩陣離散化，並檢視材料、邊界條件、網格及收斂如何影響場解與後續物理量。"
+        },
+        {
+          "title": "射頻與微波網路分析",
+          "text": "運用多埠 S、Y、Z 參數及其轉換，考慮埠定義、參考阻抗與終端條件對反射和傳輸結果的影響。"
+        },
+        {
+          "title": "超導電路建模",
+          "text": "將節點導納、模態與極點分析連到電路耦合及能量弛豫問題。"
+        }
+      ],
+      "research": [
         {
           "title": "浮動量子位元能量弛豫研究",
           "meta": "學士論文，國立中央大學",
@@ -223,7 +281,7 @@
           "title": "Layout-to-FEM 研究工作流",
           "meta": "透過模擬自動化產生研究資料",
           "tags": [
-            "AI-assisted tooling",
+            "物理建模",
             "模擬自動化",
             "參數掃描"
           ],
@@ -233,59 +291,77 @@
               "text": "開發從 GDSII layout 到 FEM 模擬的資料產生工作流，並串接參數化設計工具，讓 layout 變更能更快形成可進 solver 的實驗。"
             },
             {
-              "label": "把 AI 作為工程槓桿",
-              "text": "以 human-led, AI-assisted 的方式草擬自動化路徑、比較實作方案、審查生成程式碼，並確保工具設計仍受物理約束校準。"
-            },
-            {
               "label": "映射電路參數",
               "text": "將集總電路模型連到 Hamiltonian 層級的耦合強度與 ZZ interaction space，使參數掃描能聚焦在校準敏感的電路量。"
             }
           ]
-        },
+        }
+      ],
+      "practice": [
+        "運用國家高速網路與計算中心（NCHC）資源，並透過 mesh refinement 比較求解成本、數值差異與可靠性。",
+        "協助維護實驗室 Synology NAS，並維護個人 TrueNAS／Docker 環境，用於研究資料、備份與本地運算。"
+      ],
+      "software": [
         {
-          "title": "運算與 Mesh Refinement 實務",
-          "meta": "模擬資料分析與驗證",
+          "title": "SCGSim",
+          "meta": "超導電路模擬工具 · V1 開發中",
           "tags": [
-            "HPC operations",
-            "Mesh refinement",
-            "數值可靠性"
+            "計算電磁學",
+            "求解工作流"
           ],
           "bullets": [
             {
-              "label": "執行較大規模 solver 任務",
-              "text": "運用國家高速網路與計算中心（NCHC）叢集資源，針對複雜 layout FEM 模型產生並檢查較大規模的模擬資料。"
-            },
-            {
-              "label": "平衡時間與精度",
-              "text": "系統性調整 mesh-refinement 參數，讓模擬時間、資源使用、數值差異與可靠性可以用具體證據評估。"
+              "label": "貫通工作流中的物理意義",
+              "text": "將幾何、材料、邊界與求解設定連到電磁結果，並保留可追溯的執行與結果識別。"
             }
-          ]
+          ],
+          "url": "https://github.com/OrPenStrike/scgsim"
         },
         {
-          "title": "研究基礎設施與資料環境",
-          "meta": "研究資料管理與運算維運",
+          "title": "SCNSim",
+          "meta": "超導電路網路模擬 · V1 開發中",
           "tags": [
-            "NAS operations",
-            "Docker",
-            "Research systems"
+            "電路建模",
+            "網路分析"
           ],
           "bullets": [
             {
-              "label": "協助實驗室資料環境",
-              "text": "協助維護實驗室級 Synology NAS 環境，改善備份習慣、團隊存取與日常研究資料可靠性。"
-            },
-            {
-              "label": "建構個人研究基礎設施",
-              "text": "維護客製化 TrueNAS 系統並整合 Docker，用於研究資料整理、自動化備份與彈性的本地運算環境。"
+              "label": "先定義模型，再解讀結果",
+              "text": "讓明確宣告的電路、埠、所選網路視角，以及 S／Y／Z 或模態分析，都能連回假設與可重現結果。"
             }
-          ]
+          ],
+          "url": "https://github.com/OrPenStrike/scnsim"
+        }
+      ],
+      "design": [
+        {
+          "title": "Askr",
+          "meta": "用於技術閱讀的 Quarto 設計套件",
+          "tags": [
+            "字體排印",
+            "技術文件",
+            "資訊設計"
+          ],
+          "bullets": [
+            {
+              "label": "為閱讀而設計",
+              "text": "整合字體、行寬、導覽、引用與提示區塊，為技術文件建立一致的閱讀體驗。"
+            }
+          ],
+          "url": "https://arfiligol.github.io/askr/"
         }
       ],
       "education": [
         {
           "school": "國立中央大學（National Central University）",
+          "degree": "物理學碩士班",
+          "period": "2026 年至今",
+          "details": []
+        },
+        {
+          "school": "國立中央大學（National Central University）",
           "degree": "物理學學士",
-          "period": "預計 2026 年畢業",
+          "period": "2026 年",
           "details": [
             "論文題目：Study of XY-Line External Coupling Effects on Floating Qubit Energy Relaxation"
           ]
@@ -294,11 +370,11 @@
       "downloads": [
         {
           "label": "英文 PDF",
-          "href": "/files/Yi-Li-Chiu-CV-en.pdf"
+          "href": "/files/I-LI-CHIU-CV-en.pdf"
         },
         {
           "label": "中文 PDF",
-          "href": "/files/Yi-Li-Chiu-CV-zh.pdf"
+          "href": "/files/I-LI-CHIU-CV-zh.pdf"
         }
       ]
     }
