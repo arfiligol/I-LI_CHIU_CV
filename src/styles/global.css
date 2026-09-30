@@ -535,6 +535,10 @@ html[lang="zh-Hant"] .hero h1 {
   padding-top: 30px;
 }
 
+.education-card + .education-card {
+  margin-top: 28px;
+}
+
 .education-card h3 {
   margin: 0 0 5px;
   font-family: var(--serif);
